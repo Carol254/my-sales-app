@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 
 @Component({
@@ -28,7 +29,7 @@ import { lastValueFrom } from 'rxjs';
             MatSortModule,
             MatCardModule,
             MatButtonModule,
-            
+            CategoryFormComponent
           ]
 })
 export class CategoriesComponent implements AfterViewInit {
