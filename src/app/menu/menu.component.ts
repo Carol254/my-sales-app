@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 
+interface MenuItem {
+  path: string;
+  label: string;
+}
+
 @Component({
   selector: 'app-menu',
   standalone: true,
@@ -13,7 +18,7 @@ import { MatListModule } from '@angular/material/list';
   styles: ``
 })
 export class MenuComponent {
-  menuItems:Array<{path:string; label:string}> = [
+  menuItems:Array<MenuItem> = [
     {
       path:"/",
       label:"Home"
