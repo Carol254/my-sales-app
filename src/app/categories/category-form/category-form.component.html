@@ -1,11 +1,17 @@
 <mat-card-content>
     <form [formGroup]="categoryForm" novalidate>
-        <mat-form-field>
+        <div class="container">
+        <mat-form-field class="item-30">
             <input matInput placeholder="Name" formControlName="name" />
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Description" formControlName="description" />
+        <mat-form-field class="item-70">
+        <input
+        matInput
+        placeholder="Description"
+        formControlName="description"
+        />
         </mat-form-field>
+        </div>
     </form>
 </mat-card-content>
     
