@@ -24,8 +24,8 @@ export class CategoryFormComponent {
   categoryForm = this.fb.group(
     {
       id:[null],
-      name:["",Validators.required],
-      description:["",Validators.required]
+      name:["", [Validators.required ,Validators.minLength(3)]],
+      description:["", Validators.required]
     }
   );
 }
