@@ -1,10 +1,14 @@
+import { Category } from './category.dto';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTableModule, MatTable } from '@angular/material/table';
+import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { CategoriesDataSource, CategoriesItem } from './categories-datasource';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { CategoryService } from './category.service';
+import { lastValueFrom } from 'rxjs';
+
 
 @Component({
   selector: 'app-categories',
@@ -23,21 +27,37 @@ import { MatButtonModule } from '@angular/material/button';
             MatPaginatorModule,
             MatSortModule,
             MatCardModule,
-            MatButtonModule
+            MatButtonModule,
+            
           ]
 })
 export class CategoriesComponent implements AfterViewInit {
+
+  constructor(private categoryService:CategoryService){}
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<CategoriesItem>;
-  dataSource = new CategoriesDataSource();
+  dataSource = new MatTableDataSource<Category>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
+
+  
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    this.loadCategories();
+  }
+
+  async loadCategories():Promise<void>{
+    const categories = await lastValueFrom(this.categoryService.getAll());
+    this.dataSource = new MatTableDataSource(categories);
+
+    this.table.dataSource = this.dataSource;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }
