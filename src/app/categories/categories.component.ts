@@ -1,5 +1,5 @@
 import { Category } from './category.dto';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
@@ -32,7 +32,9 @@ import { CategoryFormComponent } from './category-form/category-form.component';
             CategoryFormComponent
           ]
 })
-export class CategoriesComponent implements AfterViewInit {
+export class CategoriesComponent implements AfterViewInit,OnInit {
+
+  showForm:Boolean = false;
 
   constructor(private categoryService:CategoryService){}
 
@@ -44,7 +46,12 @@ export class CategoriesComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name','description'];
 
-  
+  ngOnInit(): void {}
+   
+  onNewCategoryClick(){
+    console.log('showing the form');
+    this.showForm = true;
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -61,4 +68,6 @@ export class CategoriesComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
+
+ 
 }
