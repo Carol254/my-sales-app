@@ -6,7 +6,7 @@
 
 
   @if(showForm){
-    <category-category-form></category-category-form>
+    <category-category-form  (back)="hideCategoryForm()"></category-category-form>
   } @else {
     <mat-card-content>
       <table mat-table class="full-width-table" matSort aria-label="Elements">

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
@@ -17,7 +17,12 @@ import { MatCardModule } from "@angular/material/card";
   templateUrl: './category-form.component.html',
   styles: ``
 })
-export class CategoryFormComponent {
+export class CategoryFormComponent implements OnInit{
+
+  @Output() back = new EventEmitter();
+  
+  ngOnInit(): void {
+  }
    
   private fb = inject(FormBuilder);
 
@@ -31,6 +36,9 @@ export class CategoryFormComponent {
 
   onSubmit(){
     console.log(this.categoryForm.value);
-    
+  }
+
+  onBack(){
+    this.back.emit();
   }
 }
