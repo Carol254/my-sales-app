@@ -28,4 +28,9 @@ export class CategoryFormComponent {
       description:["", Validators.required]
     }
   );
+
+  onSubmit(){
+    console.log(this.categoryForm.value);
+    
+  }
 }
