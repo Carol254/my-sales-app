@@ -58,6 +58,10 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
     this.loadCategories();
   }
 
+  onSave(category:Category){
+    console.log('save category in the categories component', category);
+  }
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

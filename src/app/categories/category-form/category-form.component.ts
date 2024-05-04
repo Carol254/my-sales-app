@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
+import { Category } from '../category.dto';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { MatCardModule } from "@angular/material/card";
 export class CategoryFormComponent implements OnInit{
 
   @Output() back = new EventEmitter();
-  
+  @Output() save = new EventEmitter<Category>();
+
   ngOnInit(): void {
   }
    
@@ -35,7 +37,8 @@ export class CategoryFormComponent implements OnInit{
   );
 
   onSubmit(){
-    console.log(this.categoryForm.value);
+    console.log('button save clicked in the categoryformcomponent');
+    this.save.emit(this.categoryForm.value as Category);
   }
 
   onBack(){

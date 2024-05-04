@@ -6,7 +6,7 @@
 
 
   @if(showForm){
-    <category-category-form  (back)="hideCategoryForm()"></category-category-form>
+    <category-category-form  (back)="hideCategoryForm()"  (save)="onSave($event)"></category-category-form>
   } @else {
     <mat-card-content>
       <table mat-table class="full-width-table" matSort aria-label="Elements">
@@ -40,12 +40,14 @@
         aria-label="Select page">
       </mat-paginator>
     </mat-card-content>
+
+    
+    <mat-card-actions>
+      <button mat-button (click)="onNewCategoryClick()">New Category</button>
+    </mat-card-actions>
   }
 
  
 
-  <mat-card-actions>
-    <button mat-button (click)="onNewCategoryClick()">New Category</button>
-  </mat-card-actions>
 
 </mat-card>
