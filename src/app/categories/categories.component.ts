@@ -44,7 +44,7 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
   dataSource = new MatTableDataSource<Category>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name','description'];
+  displayedColumns = ['id', 'name','description','actions'];
 
   ngOnInit(): void {}
    
@@ -58,8 +58,14 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
     this.loadCategories();
   }
 
+  onEditCategory(category:Category){
+    console.log("edit category",category);
+  }
+
   onSave(category:Category){
-    console.log('save category in the categories component', category);
+    const saved = lastValueFrom(this.categoryService.save(category));
+    console.log('saved', saved);
+    this.hideCategoryForm();
   }
 
   ngAfterViewInit(): void {
