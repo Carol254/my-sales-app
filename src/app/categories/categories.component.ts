@@ -68,6 +68,10 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
     this.hideCategoryForm();
   }
 
+  onEditCategoryClick(){
+    
+  }
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
