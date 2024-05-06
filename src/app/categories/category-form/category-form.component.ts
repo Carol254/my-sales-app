@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
@@ -35,6 +35,10 @@ export class CategoryFormComponent implements OnInit{
       description:["", Validators.required]
     }
   );
+
+  @Input() set category(category:Category){
+    this.categoryForm.setValue(category);
+  }
 
   onSubmit(){
     console.log('button save clicked in the categoryformcomponent');

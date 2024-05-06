@@ -46,11 +46,18 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name','description','actions'];
 
+  category!:Category;
+
   ngOnInit(): void {}
    
   onNewCategoryClick(){
-    console.log('showing the form');
-    this.showForm = true;
+    this.category = {
+      id: 0,
+      name: "",
+      description: "",
+      };
+      this.showForm = true;
+      
   }
 
   hideCategoryForm(){
@@ -60,6 +67,7 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
 
   onEditCategory(category:Category){
     console.log("edit category",category);
+    this.showForm = true;
   }
 
   onSave(category:Category){
@@ -68,9 +76,6 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
     this.hideCategoryForm();
   }
 
-  onEditCategoryClick(){
-    
-  }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
