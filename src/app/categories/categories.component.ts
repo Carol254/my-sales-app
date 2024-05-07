@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryService } from './category.service';
 import { lastValueFrom } from 'rxjs';
 import { CategoryFormComponent } from './category-form/category-form.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -29,6 +30,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
             MatSortModule,
             MatCardModule,
             MatButtonModule,
+            MatIconModule,
             CategoryFormComponent
           ]
 })
@@ -74,6 +76,13 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
     }
     this.showForm = true;
   }
+
+  async onDeleteCategoryClick(category:Category) {
+    if (confirm(`Delete "${category.name}" with id ${category.id} ?`)) {
+    await lastValueFrom(this.categoryService.delete(category.id))
+    this.loadCategories();
+    }
+    }
 
   onSave(category:Category){
     const saved = lastValueFrom(this.categoryService.save(category));
