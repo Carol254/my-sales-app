@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { Category } from '../category.dto';
+import { CategoryService } from '../category.service';
 
 
 @Component({
@@ -20,11 +21,14 @@ import { Category } from '../category.dto';
 })
 export class CategoryFormComponent implements OnInit{
 
+  constructor(private categoryService:CategoryService){}
+
   @Output() back = new EventEmitter();
   @Output() save = new EventEmitter<Category>();
 
-  ngOnInit(): void {
-  }
+
+
+  ngOnInit(): void {}
    
   private fb = inject(FormBuilder);
 

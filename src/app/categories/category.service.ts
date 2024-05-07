@@ -16,6 +16,12 @@ export class CategoryService {
     return this.http.get<Category[]>(environment.api + "categories");
    }
 
+   
+  getCategoryById(id: number): Observable<Category> {
+    // Assuming your backend endpoint to fetch category data by ID is '/api/categories/:id'
+    return this.http.get<Category>(environment.api + "categories"+ {id});
+  }
+
    public save(category:Category):Observable<Category>{
     if(category.id)
       return this.http.put<Category>(

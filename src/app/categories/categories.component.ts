@@ -67,6 +67,11 @@ export class CategoriesComponent implements AfterViewInit,OnInit {
 
   onEditCategory(category:Category){
     console.log("edit category",category);
+    this.category = {
+      id:category.id,
+      name:category.name,
+      description:category.description
+    }
     this.showForm = true;
   }
 
