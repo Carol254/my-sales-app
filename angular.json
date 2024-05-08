@@ -5,7 +5,16 @@
   "projects": {
     "my-sales-app": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+          },
+          "@schematics/angular:component": {
+          "inlineStyle": true,
+          "skipTests": true
+          }
+          
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
